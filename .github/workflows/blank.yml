@@ -19,9 +19,9 @@ jobs:
             wget -m -nd -A  "httparchive_subdomains_*"  https://wordlists-cdn.assetnote.io/data/automated/
             declare -a array
             array+=(httparchive_subdomains_*)
-            head -1000 ${array[-1]} >> wordlist1000.txt
-            head -10000 ${array[-1]} >> wordlist10000.txt
-            head -100000 ${array[-1]} >> wordlist100000.txt
+            head -1000 array[-1] >> wordlist1000.txt
+            head -10000 array[-1] >> wordlist10000.txt
+            head -100000 array[-1] >> wordlist100000.txt
       - name: commit Wordlists
         run: |
           git config --local user.email "action@github.com"
