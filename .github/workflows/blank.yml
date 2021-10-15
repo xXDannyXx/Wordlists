@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  schedule:
+  - cron: "0 0 29 * *"
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: installing commonspeak2 wordlists
+        run: |
+            wget -m -nd -A  "httparchive_subdomains_*"  https://wordlists-cdn.assetnote.io/data/automated/
+            wget -nc https://wordlists-cdn.assetnote.io/data/manual/best-dns-wordlist.txt
+            wget -nc https://wordlists-cdn.assetnote.io/data/manual/2m-subdomains.txt
