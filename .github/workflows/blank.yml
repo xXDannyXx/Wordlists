@@ -20,6 +20,10 @@ jobs:
             declare -a array
             array+=(httparchive_subdomains_*)
             newestwordlist=${array[-1]}
+            rm NewestWordlist.txt
+            rm wordlist1000.txt
+            rm wordlist10000.txt
+            rm wordlist100000.txt
             cat $newestwordlist >> NewestWordlist.txt
             head -1000 $newestwordlist >> wordlist1000.txt
             head -10000 $newestwordlist >> wordlist10000.txt
