@@ -17,16 +17,12 @@ jobs:
       - name: installing commonspeak2 wordlists
         run: |
             wget -m -nd -A  "httparchive_subdomains_*"  https://wordlists-cdn.assetnote.io/data/automated/
-            wget -nc https://wordlists-cdn.assetnote.io/data/manual/best-dns-wordlist.txt
-            wget -nc https://wordlists-cdn.assetnote.io/data/manual/2m-subdomains.txt
       - name: commit Wordlists
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           if [ $(git status --porcelain=v1 2>/dev/null | wc -l) != "0" ]; then
               git add "httparchive_subdomains_*"
-              git add "best-dns-wordlist.txt"
-              git add "2m-subdomains.txt"
               git commit -m "Remote version change" -a
               git push "https://${GITHUB_ACTOR}:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF} --follow-tags
           fi
